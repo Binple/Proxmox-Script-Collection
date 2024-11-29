@@ -9,7 +9,7 @@ CONTAINER_ID=$1
 
 # apt update 및 apt upgrade
 pct exec $CONTAINER_ID apt update
-pct exec $CONTAINER_ID apt upgrade
+pct exec $CONTAINER_ID -- bash -c "apt upgrade -y"
 
 # 로케일 업데이트
 pct exec $CONTAINER_ID -- bash -c "sed -i '/# ko_KR.UTF-8 UTF-8/s/^# //' /etc/locale.gen"

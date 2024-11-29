@@ -9,7 +9,7 @@ CONTAINER_ID=$1
 
 # apt update 및 apt upgrade
 pct exec $CONTAINER_ID apt update
-pct exec $CONTAINER_ID apt upgrade
+pct exec $CONTAINER_ID -- bash -c "apt upgrade -y"
 
 # 시간대 설정 (Asia/Seoul)
 pct exec $CONTAINER_ID -- bash -c "echo 'Asia/Seoul' > /etc/timezone"
