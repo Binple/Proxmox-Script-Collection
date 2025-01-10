@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# 안전한 스크립트 실행 설정
+# Safe Script Execution Settings
 set -e
 
 # 루트 권한 확인
