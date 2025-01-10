@@ -9,6 +9,32 @@ if [[ $EUID -ne 0 ]]; then
     exit 1
 fi
 
+# 사용자 입력값 확인
+if [[ -n $1 ]]; then
+    # 입력값이 있는 경우 해당 CTID로 바로 접속
+    CTID=$1
+    STATE=$(pct status "$CTID" 2>/dev/null | awk '{print $2}')
+    if [[ -z $STATE ]]; then
+        echo "CTID $CTID에 해당하는 컨테이너가 존재하지 않습니다."
+        exit 1
+    fi
+    if [[ $STATE != "running" ]]; then
+        echo "컨테이너 $CTID가 실행 중이 아닙니다. 실행 후 접속하시겠습니까? (y/n): "
+        read -r confirm
+        if [[ $confirm == "y" ]]; then
+            pct start "$CTID"
+            echo "컨테이너 $CTID를 시작했습니다."
+        else
+            echo "접속을 취소합니다."
+            exit 0
+        fi
+    fi
+    echo "컨테이너 $CTID에 접속 중..."
+    echo "$(date): 사용자 $(whoami) - 컨테이너 $CTID에 접속" >> /var/log/lxc_access.log
+    pct enter "$CTID"
+    exit 0
+fi
+
 # pct list 명령어로 컨테이너 목록 가져오기
 mapfile -t containers < <(pct list | tail -n +2 | awk '{print $1, $2, $3}')
 
