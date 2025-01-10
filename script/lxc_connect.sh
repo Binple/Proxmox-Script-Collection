@@ -9,7 +9,7 @@ if [[ $EUID -ne 0 ]]; then
     exit 1
 fi
 
-# 사용자 입력값 확인
+# Checking User Input Values
 if [[ -n $1 ]]; then
     # 입력값이 있는 경우 해당 CTID로 바로 접속
     CTID=$1
