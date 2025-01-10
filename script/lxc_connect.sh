@@ -5,7 +5,7 @@ set -e
 
 # 루트 권한 확인
 if [[ $EUID -ne 0 ]]; then
-    echo "이 스크립트는 루트 권한으로 실행해야 합니다."
+    echo "This script must be run with root privileges."
     exit 1
 fi
 
