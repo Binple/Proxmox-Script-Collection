@@ -11,7 +11,7 @@ fi
 
 # Checking User Input Values
 if [[ -n $1 ]]; then
-    # 입력값이 있는 경우 해당 CTID로 바로 접속
+    # If an input value is provided, connect directly to the specified CTID.
     CTID=$1
     STATE=$(pct status "$CTID" 2>/dev/null | awk '{print $2}')
     if [[ -z $STATE ]]; then
