@@ -3,7 +3,7 @@
 # Safe Script Execution Settings
 set -e
 
-# 루트 권한 확인
+# Check Root Privileges
 if [[ $EUID -ne 0 ]]; then
     echo "This script must be run with root privileges."
     exit 1
