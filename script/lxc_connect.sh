@@ -38,7 +38,7 @@ fi
 # Container list using the pct list command
 mapfile -t containers < <(pct list | tail -n +2 | awk '{print $1, $2, $3}')
 
-# 컨테이너가 없는 경우 처리
+# No Containers Exist
 if [[ ${#containers[@]} -eq 0 ]]; then
     echo "LXC 컨테이너가 없습니다."
     exit 1
