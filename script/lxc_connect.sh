@@ -35,7 +35,7 @@ if [[ -n $1 ]]; then
     exit 0
 fi
 
-# pct list 명령어로 컨테이너 목록 가져오기
+# Container list using the pct list command
 mapfile -t containers < <(pct list | tail -n +2 | awk '{print $1, $2, $3}')
 
 # 컨테이너가 없는 경우 처리
